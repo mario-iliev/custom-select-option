@@ -44,5 +44,28 @@ jQuery plugin to customize the default select list
 	Default: false
 	
 #	Plugin Styling
-	The plugin doesn't apply visual styling.
-	You can use this basic CSS to get started with your customization:
+###### 	The plugin doesn't apply visual styling.
+###### 	You can use this basic CSS to get started with your customization:
+
+	/* Select Option List CSS*/
+	.custom_select { float: left; margin: 0 20px; }
+	.select_opts { background-color: #ECECEC; }
+	.option_title, .option { padding: 8px 20px; }
+	.option_title { font-weight: 600; padding-right: 30px; background-color: #ECECEC; }
+	.option { border-top: 1px solid #FFF; }
+	.option:hover { background-color: #E2E2E2; }
+	.option.current { color: #FFF; background-color: #17bed0; }
+	.option_title::selection {background-color: transparent;}
+	.option_title::-moz-selection {background-color: transparent;}
+	/* pure CSS Arrow */
+	.arrow {
+		width: 0; 
+		height: 0; 
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;	
+		border-top: 5px solid black;
+	}
+	.custom_select.opened .arrow {
+		border-top: none;
+		border-bottom: 5px solid #17bed0;  
+	}
