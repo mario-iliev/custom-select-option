@@ -1,8 +1,8 @@
 jQuery plugin to customize the default select list
 
 #	Plugin initialize
-	1. Add "data-select-box" to a div containing <select> option list
-	2. Call $(selector).customSelect(); to element containing <select> option list or to the <select> itself
+	Option 1: Add "data-select-box" to a div containing <select> option list
+	Option 2: Call $(selector).customSelect(); to element containing <select> option list or to the <select> itself
 
 #	Plugin parameters
 ###title
