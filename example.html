@@ -7,16 +7,71 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css' property='stylesheet'>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<style>
+		/* Presentation CSS */
 		body {
 			margin: 0;
 			padding: 0;
 			font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+			height: 600px;
+		}
+		.wrap {
+			opacity: 0;
+			max-width: 500px;
+			padding-bottom: 30px;
+			margin: 50px auto 0 auto;
+		}
+		.heading {
+			color: #009481;
+			text-align: center;
+			margin: 0 0 40px 0;
+		}
+		.heading a {
+			color: #FFA11B;
+		}
+		.explain {
+			margin: 0 0 40px 0;
+			padding: 30px 0 0 0;
+			border-top: 1px solid #ccc;
+			text-align: center;
+		}
+		.explain span {
+			display: block;
+			width: 100%;
+			padding: 7px 15px;
+			margin: 8px 0 0 0;
+			font-size: 15px;
+			color: #394873;
+			background-color: #ECECEC;
+			box-sizing: border-box;
+		}
+		.explain:first-child {
+			border: none;
+		}
+		.destroy {
+			display: table;
+			color: #424242;
+			padding: 5px 20px;
+			margin: 10px auto 0 auto;
+			border-radius: 5px;
+			border: 1px solid #424242;
+			text-decoration: none;
+		}
+		.destroy:hover {
+			color: #FFF;
+			background-color: #000;
+		}
+		div:focus {
+			outline: none;
+		}
+		.ui-loader {
+			display: none;
 		}
 		form {
 			display: table;
 			width: 100%;
 			max-width: 420px;
-			margin: 260px auto 0 auto;
+			min-height: 44px;
+			margin: 0 auto 50px auto;
 		}
 
 		/* Option list CSS*/
@@ -32,17 +87,16 @@
 
     	/* pure CSS Arrow */
 		.arrow {
-			width: 0; 
-			height: 0; 
+			width: 0;
+			height: 0;
 			border-left: 5px solid transparent;
-			border-right: 5px solid transparent;	
+			border-right: 5px solid transparent;
 			border-top: 5px solid black;
 		}
 		.custom_select.opened .arrow { border-bottom: 5px solid #17bed0; border-top: none; }
 	</style>
 </head>
 <body>
-
 
 <script>
 /*  
@@ -182,6 +236,8 @@
 		// Set the select menu width if option 'width' is set
 		if (opts.width) {
 			mainBox.css({'width':opts.width});
+		} else {
+			mainBox.css({'min-width': mainBox.find('.select_opts').outerWidth()+'px'});
 		}
 
 		// Open the select menu on click
@@ -262,34 +318,63 @@
 		$('div[data-select-box]').customSelect();
 	});
 })(jQuery);
+
+// Manual plugin call
+$(function() {
+	$('.wrap').animate({'opacity' : 1});
+
+	$('.destroy').on('click.destroy', function() {
+		$('div[data-select-box]').customSelect({destroy: true});
+		$('.destroy').off('click.destroy').text('Destroyed').css({'cursor':'default'});
+	});
+});
 </script>
 
-<form>
-	<div data-select-box>
-		<select>
-			<option value="1">Pizza</option>
-			<option value="2">Steak</option>
-			<option value="3">Fish</option>
-			<option value="4">Pasta</option>
-		</select>
+<div class="wrap">
+	<div class="heading">
+		<h1>jQuery Custom select option list by Mario Iliev</h1>
+		Download from Github: <a href="https://github.com/mario-iliev/custom-select-option" target="_blank">Download</a>
+		<h3>Some examples:</h3>
 	</div>
 
-	<div data-select-box>
-		<select>
-			<option value="1">Blue</option>
-			<option value="2">Red</option>
-			<option value="3">White</option>
-			<option value="4">Purple</option>
-			<option value="5">Brown</option>
-			<option value="6">Grey</option>
-			<option value="7">Orange</option>
-			<option value="8">Violet</option>
-			<option value="9">Pink</option>
-			<option value="10">Light Blue</option>
-			<option value="11">Cyan</option>
-			<option value="12">Dark Grey</option>
-		</select>
+	<div class="explain">
+		Called without parameters: <b>&lt;div data-select-box&gt;...&lt;/div&gt;</b>
 	</div>
-</form>
+
+	<form>
+		<div data-select-box>
+			<select>
+				<option value="1">Pizza</option>
+				<option value="2">Steak</option>
+				<option value="3">Fish</option>
+				<option value="4">Pasta</option>
+			</select>
+		</div>
+
+		<div data-select-box>
+			<select>
+				<option value="1">Blue</option>
+				<option value="2">Red</option>
+				<option value="3">White</option>
+				<option value="4">Purple</option>
+				<option value="5">Brown</option>
+				<option value="6">Grey</option>
+				<option value="7">Orange</option>
+				<option value="8">Violet</option>
+				<option value="9">Pink</option>
+				<option value="10">Light Blue</option>
+				<option value="11">Cyan</option>
+				<option value="12">Dark Grey</option>
+				<option value="13">Dark Blue</option>
+				<option value="13">Light Pink</option>
+			</select>
+		</div>
+	</form>
+
+	<div class="explain">
+		Click to <b>destroy</b> the plugin<br>
+		<a href="javascript:;" class="destroy">Destroy</a>
+	</div>
+</div>
 </body>
 </html>
